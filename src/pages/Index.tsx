@@ -12,14 +12,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { SkillSelector } from "@/components/SkillSelector";
 import { RoleCard } from "@/components/RoleCard";
 import rolesData from "@/data/roles.json";
-import { Search, Sparkles, GraduationCap } from "lucide-react";
+import { Search, Sparkles, GraduationCap, Download } from "lucide-react";
 import { toast } from "sonner";
+import { generatePDF } from "@/utils/pdfExport";
 
 interface Role {
   id: string;
   role: string;
   skills: string[];
   education: string[];
+  description?: string;
+  applicationTips?: string;
 }
 
 interface MatchedRole extends Role {
@@ -240,8 +243,16 @@ const Index = () => {
               ))}
             </div>
 
-            {/* Try Again Button */}
-            <div className="flex justify-center pt-4">
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+              <Button
+                onClick={() => generatePDF(recommendations, education, selectedSkills)}
+                size="lg"
+                className="bg-primary hover:bg-primary/90"
+              >
+                <Download className="w-5 h-5 mr-2" />
+                Download PDF Report
+              </Button>
               <Button
                 onClick={resetForm}
                 variant="outline"
