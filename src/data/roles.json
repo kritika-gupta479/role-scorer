@@ -1,0 +1,122 @@
+[
+  {
+    "id": "1",
+    "role": "Data Analyst Intern",
+    "skills": ["Python", "Excel", "Data Analysis", "SQL"],
+    "education": ["B.Tech CS", "B.Sc CS", "BCA", "B.Tech IT"]
+  },
+  {
+    "id": "2",
+    "role": "Web Developer Intern",
+    "skills": ["HTML", "CSS", "JavaScript", "React"],
+    "education": ["B.Tech IT", "BCA", "B.Sc CS", "B.Tech CS"]
+  },
+  {
+    "id": "3",
+    "role": "Frontend Developer",
+    "skills": ["React", "JavaScript", "HTML", "CSS", "TypeScript"],
+    "education": ["B.Tech CS", "B.Tech IT", "BCA", "B.Sc CS"]
+  },
+  {
+    "id": "4",
+    "role": "Backend Developer Intern",
+    "skills": ["Python", "Node.js", "SQL", "API Development"],
+    "education": ["B.Tech CS", "B.Tech IT", "B.Sc CS", "MCA"]
+  },
+  {
+    "id": "5",
+    "role": "Full Stack Developer",
+    "skills": ["React", "Node.js", "MongoDB", "JavaScript", "HTML", "CSS"],
+    "education": ["B.Tech CS", "B.Tech IT", "MCA", "B.Sc CS"]
+  },
+  {
+    "id": "6",
+    "role": "Mobile App Developer",
+    "skills": ["React Native", "JavaScript", "Mobile Development", "UI/UX"],
+    "education": ["B.Tech CS", "B.Tech IT", "BCA", "B.Sc CS"]
+  },
+  {
+    "id": "7",
+    "role": "Data Science Intern",
+    "skills": ["Python", "Machine Learning", "Data Analysis", "Statistics"],
+    "education": ["B.Tech CS", "B.Sc CS", "B.Tech IT", "M.Sc CS"]
+  },
+  {
+    "id": "8",
+    "role": "Machine Learning Engineer",
+    "skills": ["Python", "Machine Learning", "TensorFlow", "Deep Learning"],
+    "education": ["B.Tech CS", "B.Sc CS", "M.Sc CS", "B.Tech IT"]
+  },
+  {
+    "id": "9",
+    "role": "UI/UX Designer Intern",
+    "skills": ["Figma", "UI/UX", "HTML", "CSS", "Design"],
+    "education": ["B.Des", "B.Tech CS", "BCA", "B.Sc CS"]
+  },
+  {
+    "id": "10",
+    "role": "Quality Assurance Intern",
+    "skills": ["Testing", "Selenium", "Java", "API Testing"],
+    "education": ["B.Tech CS", "B.Tech IT", "BCA", "B.Sc CS"]
+  },
+  {
+    "id": "11",
+    "role": "Business Analyst Intern",
+    "skills": ["Excel", "Data Analysis", "SQL", "Communication"],
+    "education": ["B.Tech", "BBA", "B.Com", "MBA"]
+  },
+  {
+    "id": "12",
+    "role": "Digital Marketing Intern",
+    "skills": ["SEO", "Social Media", "Content Writing", "Analytics"],
+    "education": ["BBA", "B.Com", "BA", "MBA"]
+  },
+  {
+    "id": "13",
+    "role": "Cybersecurity Analyst",
+    "skills": ["Networking", "Security", "Python", "Ethical Hacking"],
+    "education": ["B.Tech CS", "B.Tech IT", "B.Sc CS", "M.Tech CS"]
+  },
+  {
+    "id": "14",
+    "role": "DevOps Engineer Intern",
+    "skills": ["Linux", "Docker", "AWS", "CI/CD"],
+    "education": ["B.Tech CS", "B.Tech IT", "MCA", "B.Sc CS"]
+  },
+  {
+    "id": "15",
+    "role": "Cloud Engineer",
+    "skills": ["AWS", "Azure", "Cloud Computing", "Docker"],
+    "education": ["B.Tech CS", "B.Tech IT", "MCA", "B.Sc CS"]
+  },
+  {
+    "id": "16",
+    "role": "Content Writer Intern",
+    "skills": ["Content Writing", "SEO", "Communication", "Research"],
+    "education": ["BA", "B.Com", "BBA", "MA"]
+  },
+  {
+    "id": "17",
+    "role": "HR Intern",
+    "skills": ["Communication", "Excel", "HR Management", "Recruitment"],
+    "education": ["BBA", "MBA", "BA", "B.Com"]
+  },
+  {
+    "id": "18",
+    "role": "Graphic Designer",
+    "skills": ["Photoshop", "Illustrator", "Design", "Figma"],
+    "education": ["B.Des", "BFA", "B.Tech CS", "Diploma"]
+  },
+  {
+    "id": "19",
+    "role": "Android Developer",
+    "skills": ["Java", "Kotlin", "Android", "Mobile Development"],
+    "education": ["B.Tech CS", "B.Tech IT", "BCA", "MCA"]
+  },
+  {
+    "id": "20",
+    "role": "iOS Developer",
+    "skills": ["Swift", "iOS", "Mobile Development", "UI/UX"],
+    "education": ["B.Tech CS", "B.Tech IT", "BCA", "MCA"]
+  }
+]
