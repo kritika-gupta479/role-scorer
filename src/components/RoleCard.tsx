@@ -34,19 +34,19 @@ export const RoleCard = ({
   const matchPercentage = Math.round((matchScore / totalPossible) * 100);
 
   return (
-    <Card className="p-6 bg-card hover:shadow-[var(--shadow-hover)] transition-all duration-300 border border-border">
+    <Card className="group p-6 bg-card hover:shadow-[var(--shadow-elevation)] transition-all duration-500 border border-border hover:border-primary/30 hover:-translate-y-1">
       <div className="flex items-start justify-between mb-4">
         <div className="flex-1">
-          <h3 className="text-xl font-semibold text-foreground mb-2">{role}</h3>
+          <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">{role}</h3>
           {companyName && (
-            <p className="text-sm text-muted-foreground font-medium mb-1">{companyName}</p>
+            <p className="text-sm text-muted-foreground font-medium mb-1 transition-all duration-300 group-hover:text-foreground">{companyName}</p>
           )}
           {city && state && (
-            <p className="text-sm text-muted-foreground mb-2">📍 {city}, {state}</p>
+            <p className="text-sm text-muted-foreground mb-2 transition-all duration-300 group-hover:text-foreground">📍 {city}, {state}</p>
           )}
           <div className="flex items-center gap-2">
-            <Award className="w-5 h-5 text-primary" />
-            <span className="text-2xl font-bold text-primary">
+            <Award className="w-5 h-5 text-primary transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
+            <span className="text-2xl font-bold text-primary transition-all duration-300 group-hover:scale-110">
               {matchPercentage}%
             </span>
             <span className="text-sm text-muted-foreground">Match</span>
@@ -78,8 +78,8 @@ export const RoleCard = ({
       )}
 
       {educationMatch && (
-        <div className="flex items-center gap-2 mb-4 px-3 py-2 bg-accent/10 rounded-lg border border-accent/20">
-          <CheckCircle2 className="w-4 h-4 text-accent" />
+        <div className="flex items-center gap-2 mb-4 px-3 py-2 bg-accent/10 rounded-lg border border-accent/20 transition-all duration-300 group-hover:bg-accent/20">
+          <CheckCircle2 className="w-4 h-4 text-accent transition-transform duration-300 group-hover:scale-110" />
           <span className="text-sm font-medium text-accent">
             Education Requirement Met
           </span>
@@ -89,11 +89,12 @@ export const RoleCard = ({
       <div className="space-y-2">
         <p className="text-sm font-medium text-foreground">Matched Skills:</p>
         <div className="flex flex-wrap gap-2">
-          {matchedSkills.map((skill) => (
+          {matchedSkills.map((skill, index) => (
             <Badge
               key={skill}
               variant="secondary"
-              className="bg-accent/10 text-accent border border-accent/20 hover:bg-accent/20"
+              className="bg-accent/10 text-accent border border-accent/20 hover:bg-accent/20 transition-all duration-300 hover:scale-105 hover:shadow-sm animate-fade-in"
+              style={{ animationDelay: `${index * 0.05}s` }}
             >
               {skill}
             </Badge>

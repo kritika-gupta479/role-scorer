@@ -151,26 +151,32 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-primary via-primary to-primary/80 text-primary-foreground py-16 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="flex justify-center mb-6">
-            <div className="p-4 bg-white/10 rounded-2xl backdrop-blur-sm">
-              <GraduationCap className="w-12 h-12" />
+      <div className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/80 text-primary-foreground py-20 px-4">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-1/2 -right-1/2 w-full h-full bg-white/5 rounded-full blur-3xl animate-float" />
+          <div className="absolute -bottom-1/2 -left-1/2 w-full h-full bg-white/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+        </div>
+        
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <div className="flex justify-center mb-8 animate-scale-in">
+            <div className="p-5 bg-white/10 rounded-3xl backdrop-blur-sm hover-glow hover-scale">
+              <GraduationCap className="w-16 h-16 animate-float" />
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in-up">
             Internship & Placement Recommender
           </h1>
-          <p className="text-lg md:text-xl text-primary-foreground/90 max-w-2xl mx-auto">
-            Find your perfect role match based on your education, skills, and experience
+          <p className="text-xl md:text-2xl text-primary-foreground/90 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+            Discover your perfect role match with AI-powered recommendations
           </p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-12">
         {!showResults ? (
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-card rounded-2xl shadow-[var(--shadow-soft)] p-8 border border-border">
+          <div className="max-w-4xl mx-auto animate-fade-in">
+            <div className="bg-card rounded-2xl shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-elevation)] p-8 border border-border transition-all duration-500">
               <div className="space-y-8">
                 {/* Education Section */}
                 <div className="space-y-3">
@@ -228,10 +234,11 @@ const Index = () => {
                 <Button
                   onClick={calculateMatches}
                   size="lg"
-                  className="w-full h-14 text-base font-semibold bg-primary hover:bg-primary/90"
+                  className="w-full h-14 text-base font-semibold bg-primary hover:bg-primary/90 hover-lift group overflow-hidden relative"
                 >
-                  <Search className="w-5 h-5 mr-2" />
-                  Get Recommendations
+                  <span className="absolute inset-0 bg-[var(--gradient-shimmer)] animate-shimmer" />
+                  <Search className="w-5 h-5 mr-2 relative z-10 transition-transform group-hover:scale-110" />
+                  <span className="relative z-10">Get Recommendations</span>
                 </Button>
               </div>
             </div>
@@ -239,56 +246,61 @@ const Index = () => {
         ) : (
           <div className="space-y-8">
             {/* Results Header */}
-            <div className="text-center max-w-3xl mx-auto">
-              <div className="flex justify-center mb-4">
-                <div className="p-3 bg-primary/10 rounded-xl">
-                  <Sparkles className="w-8 h-8 text-primary" />
+            <div className="text-center max-w-3xl mx-auto animate-fade-in">
+              <div className="flex justify-center mb-6">
+                <div className="p-4 bg-primary/10 rounded-2xl hover-glow animate-scale-in">
+                  <Sparkles className="w-10 h-10 text-primary animate-pulse" />
                 </div>
               </div>
-              <h2 className="text-3xl font-bold text-foreground mb-3">
+              <h2 className="text-4xl font-bold text-foreground mb-4 animate-fade-in-up">
                 Your Top Matches
               </h2>
-              <p className="text-muted-foreground">
+              <p className="text-lg text-muted-foreground animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
                 Based on your profile, here are the {recommendations.length} best roles for you
               </p>
             </div>
 
             {/* Results Grid */}
             <div className="grid gap-6 max-w-5xl mx-auto">
-              {recommendations.map((role) => (
-                <RoleCard
+              {recommendations.map((role, index) => (
+                <div
                   key={role.id}
-                  role={role.jobTitle}
-                  matchedSkills={role.matchedSkills}
-                  educationMatch={role.educationMatch}
-                  matchScore={role.matchScore}
-                  totalPossible={role.totalPossible}
-                  companyName={role.companyName}
-                  city={role.city}
-                  state={role.state}
-                  stipend={role.stipend}
-                  duration={role.duration}
-                  numberOfOpenings={role.numberOfOpenings}
-                  lastDateToApply={role.lastDateToApply}
-                />
+                  className="animate-fade-in-up"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <RoleCard
+                    role={role.jobTitle}
+                    matchedSkills={role.matchedSkills}
+                    educationMatch={role.educationMatch}
+                    matchScore={role.matchScore}
+                    totalPossible={role.totalPossible}
+                    companyName={role.companyName}
+                    city={role.city}
+                    state={role.state}
+                    stipend={role.stipend}
+                    duration={role.duration}
+                    numberOfOpenings={role.numberOfOpenings}
+                    lastDateToApply={role.lastDateToApply}
+                  />
+                </div>
               ))}
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
               <Button
                 onClick={() => generatePDF(recommendations, education, selectedSkills)}
                 size="lg"
-                className="bg-primary hover:bg-primary/90"
+                className="bg-primary hover:bg-primary/90 hover-lift group"
               >
-                <Download className="w-5 h-5 mr-2" />
+                <Download className="w-5 h-5 mr-2 transition-transform group-hover:scale-110" />
                 Download PDF Report
               </Button>
               <Button
                 onClick={resetForm}
                 variant="outline"
                 size="lg"
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground hover-lift"
               >
                 Try Again with Different Inputs
               </Button>
