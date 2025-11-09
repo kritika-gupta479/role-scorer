@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import {
@@ -11,19 +11,12 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { SkillSelector } from "@/components/SkillSelector";
 import { RoleCard } from "@/components/RoleCard";
-import rolesData from "@/data/roles.json";
-import { Search, Sparkles, GraduationCap, Download } from "lucide-react";
+import { Search, Sparkles, GraduationCap, Download, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { generatePDF } from "@/utils/pdfExport";
+import { parseCSV, InternshipData } from "@/utils/csvParser";
 
-interface Role {
-  id: string;
-  role: string;
-  skills: string[];
-  education: string[];
-  description?: string;
-  applicationTips?: string;
-}
+interface Role extends InternshipData {}
 
 interface MatchedRole extends Role {
   matchScore: number;
@@ -56,6 +49,27 @@ const Index = () => {
   const [experience, setExperience] = useState<string>("");
   const [recommendations, setRecommendations] = useState<MatchedRole[]>([]);
   const [showResults, setShowResults] = useState(false);
+  const [roles, setRoles] = useState<Role[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Load and parse CSV data
+  useEffect(() => {
+    const loadInternships = async () => {
+      try {
+        const response = await fetch('/src/data/internships.csv');
+        const csvText = await response.text();
+        const parsedData = parseCSV(csvText);
+        setRoles(parsedData);
+        toast.success(`Loaded ${parsedData.length} internship opportunities!`);
+      } catch (error) {
+        console.error("Error loading internships:", error);
+        toast.error("Error loading internship data");
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadInternships();
+  }, []);
 
   const handleSkillToggle = (skill: string) => {
     setSelectedSkills((prev) =>
@@ -69,7 +83,6 @@ const Index = () => {
       return;
     }
 
-    const roles = rolesData as Role[];
     const matchedRoles: MatchedRole[] = roles.map((role) => {
       let score = 0;
       const matchedSkills: string[] = [];
@@ -123,6 +136,17 @@ const Index = () => {
     setRecommendations([]);
     setShowResults(false);
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
+          <p className="text-muted-foreground">Loading internship opportunities...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -234,11 +258,18 @@ const Index = () => {
               {recommendations.map((role) => (
                 <RoleCard
                   key={role.id}
-                  role={role.role}
+                  role={role.jobTitle}
                   matchedSkills={role.matchedSkills}
                   educationMatch={role.educationMatch}
                   matchScore={role.matchScore}
                   totalPossible={role.totalPossible}
+                  companyName={role.companyName}
+                  city={role.city}
+                  state={role.state}
+                  stipend={role.stipend}
+                  duration={role.duration}
+                  numberOfOpenings={role.numberOfOpenings}
+                  lastDateToApply={role.lastDateToApply}
                 />
               ))}
             </div>

@@ -1,13 +1,20 @@
 import { jsPDF } from "jspdf";
 
 interface Role {
-  role: string;
+  jobTitle: string;
   matchedSkills: string[];
   educationMatch: boolean;
   matchScore: number;
   totalPossible: number;
   description?: string;
   applicationTips?: string;
+  companyName?: string;
+  city?: string;
+  state?: string;
+  stipend?: string;
+  duration?: string;
+  numberOfOpenings?: string;
+  lastDateToApply?: string;
 }
 
 export const generatePDF = (
@@ -77,13 +84,53 @@ export const generatePDF = (
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(30, 64, 175);
-    doc.text(`${index + 1}. ${role.role}`, margin + 3, yPosition + 8);
+    doc.text(`${index + 1}. ${role.jobTitle}`, margin + 3, yPosition + 8);
     
     doc.setFontSize(10);
     doc.setTextColor(34, 197, 94);
     doc.text(`${matchPercentage}% Match`, pageWidth - margin - 3, yPosition + 8, { align: "right" });
     
     yPosition += 15;
+
+    // Company and Location info
+    if (role.companyName) {
+      doc.setFontSize(9);
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(0, 0, 0);
+      doc.text("Company:", margin + 3, yPosition);
+      doc.setFont("helvetica", "normal");
+      doc.text(role.companyName, margin + 23, yPosition);
+      yPosition += 5;
+    }
+    
+    if (role.city && role.state) {
+      doc.setFont("helvetica", "bold");
+      doc.text("Location:", margin + 3, yPosition);
+      doc.setFont("helvetica", "normal");
+      doc.text(`${role.city}, ${role.state}`, margin + 23, yPosition);
+      yPosition += 5;
+    }
+
+    // Internship details
+    if (role.stipend || role.duration || role.numberOfOpenings) {
+      let detailsLine = "";
+      if (role.stipend) detailsLine += `Stipend: ${role.stipend}  `;
+      if (role.duration) detailsLine += `Duration: ${role.duration}  `;
+      if (role.numberOfOpenings) detailsLine += `Openings: ${role.numberOfOpenings}`;
+      doc.text(detailsLine, margin + 3, yPosition);
+      yPosition += 5;
+    }
+
+    if (role.lastDateToApply) {
+      doc.setFont("helvetica", "italic");
+      doc.setTextColor(220, 38, 38);
+      doc.text(`Apply by: ${role.lastDateToApply}`, margin + 3, yPosition);
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(0, 0, 0);
+      yPosition += 7;
+    }
+    
+    yPosition += 2;
 
     // Matched Skills
     doc.setFontSize(9);
