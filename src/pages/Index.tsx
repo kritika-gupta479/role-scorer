@@ -11,11 +11,10 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { SkillSelector } from "@/components/SkillSelector";
 import { RoleCard } from "@/components/RoleCard";
-import { Search, Sparkles, GraduationCap, Download, Loader2, BookOpen } from "lucide-react";
+import { Search, Sparkles, GraduationCap, Download, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { generatePDF } from "@/utils/pdfExport";
 import { parseCSV, InternshipData } from "@/utils/csvParser";
-import { Link } from "react-router-dom";
 
 interface Role extends InternshipData {}
 
@@ -171,14 +170,6 @@ const Index = () => {
           <p className="text-xl md:text-2xl text-primary-foreground/90 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             Discover your perfect role match with AI-powered recommendations
           </p>
-          <div className="mt-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            <Link to="/docs">
-              <Button variant="outline" className="bg-white/10 border-white/20 text-primary-foreground hover:bg-white/20 gap-2">
-                <BookOpen className="w-4 h-4" />
-                View Project Documentation
-              </Button>
-            </Link>
-          </div>
         </div>
       </div>
 
